@@ -101,24 +101,24 @@
   }
   
   .hero-slide:nth-child(1) {
-    background-image: url('images/photo1.jpg');
+    background-image: url('./photo1.jpg');
     animation-delay: 0s;
   }
   
   .hero-slide:nth-child(2) {
-    background-image: url('images/photo2.jpg');
+    background-image: url('./photo2.jpg');
     animation-delay: 8s;
   }
   .hero-slide:nth-child(3) {
-    background-image: url('images/photo3.jpg');
+    background-image: url('./photo3.jpg');
     animation-delay: 16s;
   }
   .hero-slide:nth-child(4) {
-    background-image: url('images/photo4.jpg');
+    background-image: url('./photo4.jpg');
     animation-delay: 24s;
   }
   .hero-slide:nth-child(5) {
-    background-image: url('images/photo5.jpg');
+    background-image: url('./photo5.jpg');
     animation-delay: 32s;
   }
   @keyframes heroFade {
