@@ -384,14 +384,14 @@
 
   <div class="contact-form reveal">
     <div class="form-row">
-      <input type="text" class="form-field" placeholder="Your Name">
-      <input type="text" class="form-field" placeholder="Company Name">
+      <input type="text" id="cname" class="form-field" placeholder="Your Name">
+      <input type="text" id="company" class="form-field" placeholder="Company Name">
     </div>
     <div class="form-row">
-      <input type="email" class="form-field" placeholder="Email Address">
-      <input type="tel" class="form-field" placeholder="Phone Number">
+      <input type="email" id="email" class="form-field" placeholder="Email Address">
+      <input type="tel" id="phone" class="form-field" placeholder="Phone Number">
     </div>
-    <select class="form-field" style="appearance:none;cursor:pointer;">
+    <select id="product" class="form-field" style="appearance:none;cursor:pointer;">
       <option value="" disabled selected>Product Interest</option>
       <option>Food &amp; Beverage Packaging</option>
       <option>Spirits &amp; Wine Bottles</option>
@@ -399,10 +399,24 @@
       <option>Custom / NPD</option>
       <option>Other</option>
     </select>
-    <textarea class="form-field" placeholder="Tell us about your packaging needs..."></textarea>
-    <a href="mailto:nitin@glasspack.co?subject=Enquiry from Alliance GlassPack Website" class="form-submit" style="display:inline-block;text-decoration:none;text-align:center;">Send Enquiry</a>
+    <textarea id="message" class="form-field" placeholder="Tell us about your packaging needs..."></textarea>
+    <button class="form-submit" onclick="sendEnquiry()">Send Enquiry</button>
 </div>
 
+<script>
+function sendEnquiry() {
+  const name = document.getElementById('cname').value;
+  const company = document.getElementById('company').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const product = document.getElementById('product').value;
+  const message = document.getElementById('message').value;
+
+  const body = `Name: ${name}%0ACompany: ${company}%0AEmail: ${email}%0APhone: ${phone}%0AProduct Interest: ${product}%0A%0AMessage:%0A${message}`;
+
+  window.location.href = `mailto:nitin@glasspack.co?subject=Enquiry from Alliance GlassPack Website&body=${body}`;
+}
+</script>
 
 <!-- FOOTER -->
 <footer>
