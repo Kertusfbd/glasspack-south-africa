@@ -382,16 +382,16 @@
     </div>
   </div>
 
-  l<form class="contact-form reveal" action="mailto:nitin@glasspack.co" method="POST" enctype="text/plain">
+  <div class="contact-form reveal">
     <div class="form-row">
-      <input type="text" name="Name" class="form-field" placeholder="Your Name" required>
-      <input type="text" name="Company" class="form-field" placeholder="Company Name">
+      <input type="text" class="form-field" placeholder="Your Name">
+      <input type="text" class="form-field" placeholder="Company Name">
     </div>
     <div class="form-row">
-      <input type="email" name="Email" class="form-field" placeholder="Email Address" required>
-      <input type="tel" name="Phone" class="form-field" placeholder="Phone Number">
+      <input type="email" class="form-field" placeholder="Email Address">
+      <input type="tel" class="form-field" placeholder="Phone Number">
     </div>
-    <select name="Product Interest" class="form-field" style="appearance:none;cursor:pointer;">
+    <select class="form-field" style="appearance:none;cursor:pointer;">
       <option value="" disabled selected>Product Interest</option>
       <option>Food &amp; Beverage Packaging</option>
       <option>Spirits &amp; Wine Bottles</option>
@@ -399,10 +399,10 @@
       <option>Custom / NPD</option>
       <option>Other</option>
     </select>
-    <textarea name="Message" class="form-field" placeholder="Tell us about your packaging needs..."></textarea>
-    <button type="submit" class="form-submit">Send Enquiry</button>
-</form>
-</section>
+    <textarea class="form-field" placeholder="Tell us about your packaging needs..."></textarea>
+    <a href="mailto:nitin@glasspack.co?subject=Enquiry from Alliance GlassPack Website" class="form-submit" style="display:inline-block;text-decoration:none;text-align:center;">Send Enquiry</a>
+</div>
+
 
 <!-- FOOTER -->
 <footer>
