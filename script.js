@@ -16,21 +16,22 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => observer.observe(el));
 
-  // Form handler
-  function handleSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-submit');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = '#2a2a2a';
-    btn.style.color = '#B89A4E';
-    btn.style.borderColor = '#B89A4E';
-    setTimeout(() => {
-      btn.textContent = 'Send Enquiry';
-      btn.style.background = '';
-      btn.style.color = '';
-      e.target.reset();
-    }, 3000);
-  }
+  // Contact form now posts directly to FormSubmit (native form submission).
+  // FormSubmit requires a real (non-AJAX) POST with its captcha step enabled
+  // in order for the automatic "we received your enquiry" reply to the
+  // customer (_autoresponse) to fire - it explicitly does not support
+  // autoresponse on AJAX submissions, so we no longer intercept submit here.
+  // After FormSubmit's one-time verification step, it redirects back to
+  // contact.html?sent=true, and this shows the thank-you banner.
+  document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === 'true') {
+      const banner = document.getElementById('sentBanner');
+      const form = document.getElementById('enquiryForm');
+      if (banner) banner.style.display = 'block';
+      if (form) form.style.display = 'none';
+    }
+  });
 
   // Smooth anchor links
   document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -42,3 +43,47 @@
       }
     });
   });
+
+  // Mobile hamburger navigation
+  const navToggle = document.getElementById('navToggle');
+  const navLinksEl = document.querySelector('.nav-links');
+  const navCtaEl = document.getElementById('navCta');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function closeMobileNav() {
+    navToggle.classList.remove('is-open');
+    navLinksEl.classList.remove('is-open');
+    navCtaEl.classList.remove('is-open');
+    navOverlay.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  function openMobileNav() {
+    navToggle.classList.add('is-open');
+    navLinksEl.classList.add('is-open');
+    navCtaEl.classList.add('is-open');
+    navOverlay.classList.add('is-open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navToggle.classList.contains('is-open');
+      if (isOpen) closeMobileNav();
+      else openMobileNav();
+    });
+
+    navOverlay.addEventListener('click', closeMobileNav);
+
+    // Close menu when a nav link is tapped (so navigating actually navigates)
+    navLinksEl.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
+    // Close menu if window is resized back to desktop width
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) closeMobileNav();
+    });
+  }
