@@ -49,7 +49,16 @@ a global nav change turns into 12 find-and-replace edits.
    updating (a find-and-replace across all `.html` files plus the two root files
    covers it).
 
-2. **Contact form activation (one-time step)** — the form in `contact.html` posts
+2. **Clean URLs (no .html extension) — requires `.htaccess`.** Every internal
+   link now points to e.g. `/markets` instead of `/markets.html`. This only
+   works if the `.htaccess` file at the root of this folder is uploaded
+   alongside everything else — it's what tells the Apache server to serve
+   `markets.html` when someone requests `/markets`, and to redirect anyone
+   who lands on `/markets.html` directly back to the clean version. If your
+   host doesn't run Apache (Hostinger does), this file needs to be swapped
+   for the equivalent config on whatever server software is actually in use.
+
+3. **Contact form activation (one-time step)** — the form in `contact.html` posts
    to FormSubmit (a free third-party form-relay service, no backend needed). The
    **first ever submission** from the live site triggers a confirmation email to
    `nitin@glasspack.co` that must be clicked to activate delivery. Until that's
@@ -57,17 +66,17 @@ a global nav change turns into 12 find-and-replace edits.
    emails both `nitin@glasspack.co` and `Jessica.ist@glasspack.co`, and
    auto-replies to the sender with contact details as a fallback.
 
-3. **PDF documents are password-protected against editing, not against opening.**
+4. **PDF documents are password-protected against editing, not against opening.**
    Both PDFs in `/documents` open freely with no password, but can't be edited
    without an owner password (Nitin has it). See `documents/README.txt` for
    details if either document ever needs to be updated.
 
-4. **Fonts load from Google Fonts CDN** (`fonts.googleapis.com`) — this requires
+5. **Fonts load from Google Fonts CDN** (`fonts.googleapis.com`) — this requires
    the live site to have outbound access to that domain, which is standard on
    virtually all hosting but worth knowing if there's an unusually locked-down
    firewall/CSP in place.
 
-5. **Submit `sitemap.xml` to Google Search Console** once live — this is what
+6. **Submit `sitemap.xml` to Google Search Console** once live — this is what
    actually gets the site crawled quickly rather than waiting for organic
    discovery.
 
